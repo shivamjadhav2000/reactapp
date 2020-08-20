@@ -1,0 +1,39 @@
+api
+
+import React ,{Component} from 'react'
+
+class TST extends Component{
+    constructor(){
+        super()
+        this.state={
+        Loading:false,
+        character:{},
+        
+        }
+    }
+    componentDidMount(){
+        this.setState({Loading:true})
+        fetch("https://swapi.dev/api/people/1/")
+        .then(response=>response.json())
+        .then(data=>{
+            this.setState({
+                Loading:false,
+                character:data
+            })
+        })
+       
+    }
+     render(){
+         const show=this.state.Loading?"loading...":this.state.character.name
+
+         return (
+             <div>
+                 <h1>{show}</h1>
+             </div>
+         )
+     }
+
+}
+export default TST
+
+########################
